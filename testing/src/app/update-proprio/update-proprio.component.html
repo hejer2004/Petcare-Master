@@ -1,0 +1,101 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Modifier un propriétaire</h2>
+
+  <form (ngSubmit)="updateProprietaire()" class="row g-3">
+    <div class="col-md-6">
+      <label for="nom" class="form-label">Nom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nom"
+        [(ngModel)]="proprietaire.nom"
+        name="nom"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="prenom" class="form-label">Prénom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="prenom"
+        [(ngModel)]="proprietaire.prenom"
+        name="prenom"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="num_tel" class="form-label">Numéro de téléphone</label>
+      <input
+        type="text"
+        class="form-control"
+        id="num_tel"
+        [(ngModel)]="proprietaire.num_tel"
+        name="num_tel"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Sexe</label><br />
+      <label>
+        <input
+          type="radio"
+          name="sexe"
+          [(ngModel)]="proprietaire.sexe"
+          value="M"
+        />
+        Mâle
+      </label>
+      <label style="margin-left: 15px">
+        <input
+          type="radio"
+          name="sexe"
+          [(ngModel)]="proprietaire.sexe"
+          value="F"
+        />
+        Femelle
+      </label>
+    </div>
+
+    <div class="col-12">
+      <label for="adresse" class="form-label">Adresse</label>
+      <input
+        type="text"
+        class="form-control"
+        id="adresse"
+        [(ngModel)]="proprietaire.adresse"
+        name="adresse"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        [(ngModel)]="proprietaire.email"
+        name="email"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="mdp" class="form-label">Mot de passe</label>
+      <input
+        type="password"
+        class="form-control"
+        id="mdp"
+        [(ngModel)]="proprietaire.mdp"
+        name="mdp"
+      />
+    </div>
+
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </div>
+
+    <div class="col-12">
+      <div *ngIf="message" class="alert alert-info mt-3">{{ message }}</div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,119 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Modifier un animal</h2>
+
+  <form (ngSubmit)="updateAnimal()" class="row g-3">
+    <div class="col-md-6">
+      <label for="espece" class="form-label">Espèce</label>
+      <select
+        class="form-select"
+        id="espece"
+        [(ngModel)]="animal.espece"
+        name="espece"
+      >
+        <option *ngFor="let e of especes" [value]="e.code_espece">
+          {{ e.libelle }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label for="nom" class="form-label">Nom</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nom"
+        [(ngModel)]="animal.nom"
+        name="nom"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="date_nais" class="form-label">Date de naissance</label>
+      <input
+        type="date"
+        class="form-control"
+        id="date_nais"
+        [(ngModel)]="animal.date_nais"
+        name="date_nais"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Sexe</label><br />
+      <label>
+        <input type="radio" name="sexe" [(ngModel)]="animal.sexe" value="M" />
+        Mâle
+      </label>
+      <label style="margin-left: 15px">
+        <input type="radio" name="sexe" [(ngModel)]="animal.sexe" value="F" />
+        Femelle
+      </label>
+    </div>
+
+    <div class="col-md-6">
+      <label for="race" class="form-label">Race</label>
+      <input
+        type="text"
+        class="form-control"
+        id="race"
+        [(ngModel)]="animal.race"
+        name="race"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="couleur" class="form-label">Couleur</label>
+      <input
+        type="text"
+        class="form-control"
+        id="couleur"
+        [(ngModel)]="animal.couleur"
+        name="couleur"
+      />
+    </div>
+    
+    <div class="col-md-6">
+      <label for="poids" class="form-label">Poids (kg)</label>
+      <input
+        type="number"
+        step="0.01"
+        class="form-control"
+        id="poids"
+        [(ngModel)]="animal.poids"
+        name="poids"
+      />
+    </div>
+
+    <div class="col-12">
+      <label for="signe" class="form-label">Signe particulier</label>
+      <input
+        type="text"
+        class="form-control"
+        id="signe"
+        [(ngModel)]="animal.signe"
+        name="signe"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label for="sterilisation" class="form-label">Stérilisé</label>
+      <select
+        class="form-select"
+        id="sterilisation"
+        [(ngModel)]="animal.sterilisation"
+        name="sterilisation"
+      >
+        <option [ngValue]="0">Non</option>
+        <option [ngValue]="1">Oui</option>
+      </select>
+    </div>
+
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </div>
+
+    <div class="col-12">
+      <div *ngIf="message" class="alert alert-info mt-3">{{ message }}</div>
+    </div>
+  </form>
+</div>

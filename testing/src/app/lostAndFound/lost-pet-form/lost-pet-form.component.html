@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Signaler un animal perdu</h2>
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="form-group">
+      <label for="image">Image (facultative)</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+    
+    <div class="form-group">
+      <label for="date_perte">Date de perte</label>
+      <input type="date" id="date_perte" name="date_perte" [(ngModel)]="date_perte" required>
+      <div class="text-danger" *ngIf="formSubmitted && !date_perte">
+        La date de perte est requise
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lieu_perte">Lieu de perte</label>
+      <input type="text" id="lieu_perte" name="lieu_perte" [(ngModel)]="lieu_perte" placeholder="Entrez l'adresse ou le lieu" required>
+      <div class="text-danger" *ngIf="formSubmitted && !lieu_perte">
+        Le lieu de perte est requis
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit">Signaler</button>
+    </div>
+    <div class="form-group">
+      <button type="button" (click)="onReset()">Annuler</button>
+    </div>
+  </form>
+</div>

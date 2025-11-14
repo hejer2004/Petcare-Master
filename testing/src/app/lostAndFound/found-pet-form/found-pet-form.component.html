@@ -1,0 +1,101 @@
+<div class="container">
+  <h2>Signaler un animal trouvé</h2>
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="form-group">
+      <div class="form-group">
+
+
+        <label for="image">Photo de l'animal (facultative)</label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          (change)="onImageSelected($event)"
+          accept="image/*"
+        />
+      </div>  
+      
+      
+      <label for="description">Description de l'animal</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="description"
+        rows="3"
+        placeholder="Décrivez l'animal (race, couleur, taille, etc.)"
+        required
+      ></textarea>
+      <div
+        class="text-danger"
+        *ngIf="
+          formSubmitted && (!description || description.trim().length < 10)
+        "
+      >
+        La description doit contenir au moins 10 caractères.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="date_trouve">Date où l'animal a été trouvé</label>
+      <input
+        type="date"
+        id="date_trouve"
+        name="date_trouve"
+        [(ngModel)]="date_trouve"
+        required
+      />
+      <div
+        class="text-danger"
+        *ngIf="formSubmitted && (!date_trouve || !isValidDate(date_trouve))"
+      >
+        Veuillez entrer une date valide (pas dans le futur).
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lieu_trouve">Lieu où l'animal a été trouvé</label>
+      <input
+        type="text"
+        id="lieu_trouve"
+        name="lieu_trouve"
+        [(ngModel)]="lieu_trouve"
+        placeholder="Entrez l'adresse ou le lieu"
+        required
+      />
+      <div
+        class="text-danger"
+        *ngIf="formSubmitted && (!lieu_trouve || lieu_trouve.trim().length < 3)"
+      >
+        Le lieu doit contenir au moins 3 caractères.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="contact_trouveur">Votre email de contact</label>
+      <input
+        type="email"
+        id="contact_trouveur"
+        name="contact_trouveur"
+        [(ngModel)]="contact_trouveur"
+        placeholder="Entrez votre email"
+        required
+      />
+      <div
+        class="text-danger"
+        *ngIf="
+          formSubmitted &&
+          (!contact_trouveur || !isValidEmail(contact_trouveur))
+        "
+      >
+        Un email valide est requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="submit">Signaler</button>
+    </div>
+    <div class="form-group">
+      <button type="button" (click)="onReset()">Annuler</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,15 @@
+<nav class="navbar">
+  <div >
+    <a class="logo" [routerLink]="['']"> PetCare</a>
+  </div>
+  <div class="nav-links">
+    <a href=".footer">About</a>
+    <a *ngIf="!isLoggedin" [routerLink]="['/signup']">  Inscrire</a>
+    <a *ngIf="!isLoggedin" [routerLink]="['/login']">Connecter</a>
+    <a *ngIf="isLoggedin" [routerLink]="['/profil']">Mon profil</a>
+    <a *ngIf="isLoggedin" [routerLink]="['/lost-found']">Lost and Found</a>
+    <a *ngIf="isLoggedin" [routerLink]="['/pet-page']">Mes animaux </a>
+    <a *ngIf="isLoggedin" (click)="logOut()">LogOut</a>
+    
+  </div>
+</nav>

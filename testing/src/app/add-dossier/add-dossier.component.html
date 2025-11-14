@@ -1,0 +1,88 @@
+<div class="container">
+  <h2>Ajout d'un Dossier Médical</h2>
+
+  <form (ngSubmit)="onSubmit()" #addDossierForm="ngForm">
+    <div class="form-group">
+      <label for="id_animal">Animal*</label>
+      <select
+        id="id_animal"
+        name="id_animal"
+        [(ngModel)]="selectedPetId"
+        required
+      >
+        <option value="" selected>-- Sélectionner un animal --</option>
+        <option *ngFor="let pet of pets" [value]="pet.id_animal">
+          {{ pet.nom }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description*</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="description"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="diagnostique">Diagnostique*</label>
+      <textarea
+        id="diagnostique"
+        name="diagnostique"
+        [(ngModel)]="diagnostique"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="traitements">Traitements*</label>
+      <textarea
+        id="traitements"
+        name="traitements"
+        [(ngModel)]="traitements"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="medicaments">Médicaments*</label>
+      <textarea
+        id="medicaments"
+        name="medicaments"
+        [(ngModel)]="medicaments"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date*</label>
+      <input type="date" id="date" name="date" [(ngModel)]="date" required />
+    </div>
+
+    <div class="form-group">
+      <label for="type_vaccin">Type de vaccin*</label>
+      <input
+        type="text"
+        id="type_vaccin"
+        name="type_vaccin"
+        [(ngModel)]="type_vaccin"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="vaccin">Vaccin*</label>
+      <input type="checkbox" id="vaccin" name="vaccin" [(ngModel)]="vaccin" />
+    </div>
+
+    <div class="form-group">
+      <button type="submit">Ajouter le dossier</button>
+    </div>
+
+    <div *ngIf="successMessage" style="color: green">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" style="color: red">{{ errorMessage }}</div>
+  </form>
+</div>

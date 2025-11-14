@@ -1,0 +1,103 @@
+<div class="container-fluid">
+  <app-navbar></app-navbar>
+  <div class="r1">
+    <img src="images/background.jpg" alt="" class="img-fluid" />
+    <div id="text1">
+      <h1>Bienvenue sur Pet Care Hub ! 🐾</h1>
+      <p>
+        Gérez facilement les infos de votre animal : santé, rappels, conseils et
+        plus encore. Offrez-lui le meilleur suivi en quelques clics ! 🚀
+      </p>
+      <ul>
+        <li>
+          <button class="btn" [routerLink]="['/login']">Connecter</button>
+        </li>
+        <li>
+          <button class="btn" [routerLink]="['/signup']">Inscrire</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="r2">
+    <div class="row">
+      <div class="col-md-6 col-12" style="margin-top: 30px">
+        <img src="images/tel.jpg" alt="" class="img-tel" />
+      </div>
+      <div class="col-md-6 col-12" id="text2">
+        <h1 style="font-weight: bolder">
+          Le carnet de santé numérique<br />
+          Pour tous les animaux
+        </h1>
+        <p style="font-weight: bold">
+          Le carnet de santé numérique pour votre animal, gratuit et accessible
+          partout! 🐾📱
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="r2">
+    <div class="row">
+      <div class="col-md-6 col-12 div-rabbit" style="margin-top: 30px">
+        <img src="images/rabbit.jpg" alt="" class="img-rabbit" />
+      </div>
+      <div class="col-md-6 col-12" id="text3">
+        <h1 style="font-weight: bolder; font-size: 40">
+          Toutes les infos importantes de vos animaux sur votre portable !
+        </h1>
+        <p style="font-weight: bold">
+          De manière simple et ludique, vous pourrez créer pour chaque animal
+          <span style="color: #6a93b6; font-weight: bold"
+            >un carnet de santé électronique fiable et interactif</span
+          >. Programmer des rappels, enregistrer et partager les données
+          médicales avec vos proches ou votre vétérinaire, paramétrer vos
+          notifications pour être sûr de ne rater aucune étape importante.
+        </p>
+        <ul>
+          <li>
+            <button class="btn" [routerLink]="['/login']">Connecter</button>
+          </li>
+          <li>
+            <button class="btn" [routerLink]="['/signup']">Inscrire</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="r3">
+    <div class="paws-container">
+      <img src="images/paws.png" alt="" class="img-fluid" />
+      <div class="row" id="content">
+        <div class="col-md-6 col-12 text4">
+          <h1 style="font-weight: bolder">Système de Lost and Found! 🐾🔍</h1>
+          <p style="font-weight: bold">
+            Grâce à Pet Care Hub, retrouvez rapidement un animal perdu ou aidez
+            à réunir un compagnon égaré avec son propriétaire.
+          </p>
+          <ul>
+            <li >
+              <button *ngIf="isLoggedin" class="btn" [routerLink]="['/lost-found']">
+                lost and found
+              </button>
+            </li>
+            <li>
+              <button *ngIf="!isLoggedin" class="btn" [routerLink]="['/login']">
+                lost and found
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-12 img-lost-dog">
+          <img src="images/lost_dog.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <h1>PetCareHub</h1>
+    <p>2025 PetcareHub - tous droits réservés</p>
+  </div>
+</div>

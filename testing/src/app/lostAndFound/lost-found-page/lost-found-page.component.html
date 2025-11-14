@@ -1,0 +1,60 @@
+
+<app-navbar></app-navbar>
+<div class="page-content">
+  <h2 class="title">Lost & Found</h2>
+
+  <div class="action-buttons">
+    <button class="action-button" [routerLink]="['/found-pet']">J'ai trouvé un animal</button>
+  </div>
+
+  <!-- Animaux perdus -->
+  <div>
+    <h3>Animaux perdus</h3>
+    <div class="card-grid">
+      <div class="info-card" *ngFor="let pet of lostPets">
+        <h3>🔴 Perdu</h3>
+        
+        <!-- Image de l'animal perdu -->
+        <img *ngIf="pet.image" [src]="'http://localhost:8080/petcare-master/backend/uploadsLost/' + pet.image" alt="Image de l'animal perdu" class="pet-image" />
+
+        <p><strong>Nom:</strong> {{ pet.nom }}</p>
+        <p><strong>Espèce:</strong> {{ pet.espece_libelle }}</p>
+        <p><strong>Race:</strong> {{ pet.race }}</p>
+        <p><strong>Date de perte:</strong> {{ pet.date_perte | date : "dd/MM/yyyy" }}</p>
+        <p><strong>Lieu:</strong> {{ pet.lieu_perte }}</p>
+        <p><strong>Propriétaire:</strong> {{ pet.proprietaire_nom }} {{ pet.proprietaire_prenom }}</p>
+        <p><strong>Contact:</strong> {{ pet.proprietaire_email }}</p>
+
+        <ng-container *ngIf="isOwner(pet); else contactLost">
+          <button class="card-button" (click)="deletelostPost(pet.id_animal)">Supprimer</button>
+        </ng-container>
+        <ng-template #contactLost>
+          <a class="card-button" [href]="'mailto:' + pet.proprietaire_email">Contacter</a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- Animaux trouvés -->
+  <div class="mt-5">
+    <h3>Animaux trouvés</h3>
+    <div class="card-grid">
+      <div class="info-card" *ngFor="let pet of foundPets">
+        <h3>🟢 Trouvé</h3>
+        <img *ngIf="pet.image" [src]="'http://localhost:8080/petcare-master/backend/uploadsFound/' + pet.image" alt="Image de l'animal" class="pet-image" />
+
+        <p><strong>Description:</strong> {{ pet.description }}</p>
+        <p><strong>Date trouvé:</strong> {{ pet.date_trouve | date : "dd/MM/yyyy" }}</p>
+        <p><strong>Lieu:</strong> {{ pet.lieu_trouve }}</p>
+        <p><strong>Contact:</strong> {{ pet.contact_trouveur }}</p>
+
+        <ng-container *ngIf="isEmail(pet); else contactFound">
+          <button class="card-button" (click)="deletefoundPost(pet.contact_trouveur,pet.date_trouve)">Supprimer</button>
+        </ng-container>
+        <ng-template #contactFound>
+          <a class="card-button" [href]="'mailto:' + pet.contact_trouveur">Contacter</a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

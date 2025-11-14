@@ -1,0 +1,102 @@
+/* Page background */
+.page-content {
+    background-color: #fafae2;
+    padding: 40px;
+    margin: 80px auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", sans-serif;
+    color: #333;
+  }
+  
+  /* Title */
+  .title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  
+  /* Card flex layout */
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  
+  /* Info card style */
+  .info-card {
+    background-color: #fffaf0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(50% - 20px); /* 2 cards per row with gap */
+    min-width: 300px;
+    max-width: 100%;
+  }
+  
+  .info-card h3 {
+    margin-top: 0;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  
+  /* Card button */
+  .card-button {
+    background-color: #d3b68d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+  }
+  
+  .card-button:hover {
+    background-color: #c6a87a;
+  }
+  
+  /* Action buttons at the bottom */
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .action-button {
+    background-color: #d3b68d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .action-button:hover {
+    background-color: #c6a87a;
+  }
+  
+  /* Empty state */
+  .empty-state {
+    background-color: #fafae2;
+    text-align: center;
+    padding: 60px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    max-width: 600px;
+  }
+  
+  .empty-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+  
+  .no-data {
+    font-style: italic;
+    color: #999;
+  }

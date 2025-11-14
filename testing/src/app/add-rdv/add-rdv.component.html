@@ -1,0 +1,57 @@
+<div class="container">
+  <h2>Ajout d'un Rendez-vous</h2>
+
+  <form (ngSubmit)="onSubmit()" #rendezVousForm="ngForm">
+    <div class="form-group">
+      <label for="id_animal">Animal*</label>
+      <select
+        id="id_animal"
+        name="id_animal"
+        [(ngModel)]="selectedPetId"
+        required
+      >
+        <option value="" selected>-- Sélectionner un animal --</option>
+        <option *ngFor="let pet of pets" [value]="pet.id_animal">
+          {{ pet.nom }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="veterinaire">Vétérinaire*</label>
+      <input
+        type="text"
+        id="veterinaire"
+        name="veterinaire"
+        [(ngModel)]="rendezVous.veterinaire"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="lieux">Lieu du rendez-vous*</label>
+      <input
+        type="text"
+        id="lieux"
+        name="lieux"
+        [(ngModel)]="rendezVous.lieux"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date et heure*</label>
+      <input
+        type="datetime-local"
+        id="date"
+        name="date"
+        [(ngModel)]="rendezVous.date"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <button type="submit">Ajouter le rendez-vous</button>
+    </div>
+  </form>
+</div>

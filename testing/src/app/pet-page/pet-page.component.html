@@ -1,0 +1,152 @@
+<app-navbar></app-navbar>
+
+<div class="page-content" *ngIf="pets && pets.length > 0">
+  <h1 class="title">Mes animaux</h1>
+
+  <div class="pet-select">
+    <label for="pet">Choisir un animal :</label>
+    <select
+      id="pet"
+      class="pet-list"
+      [(ngModel)]="selectedPetId"
+      (change)="selectPet(selectedPetId)"
+    >
+      <option *ngFor="let pet of pets" [value]="pet.id_animal">
+        {{ pet.nom }} ({{ pet.espece_libelle }})
+      </option>
+    </select>
+    <button
+      type="button"
+      (click)="deletePet()"
+      style="background: none; border: none; cursor: pointer"
+    >
+      <i class="fa-solid fa-trash" style="color: red"></i>
+    </button>
+    <button
+      class="action-button edit-btn"
+      [routerLink]="['/update-animal', selectedPet.id_animal]"
+    >
+      Modifier
+    </button>
+  </div>
+
+  <div class="pet-header" *ngIf="selectedPet">
+    <div class="pet-avatar"></div>
+    <div class="pet-name">
+      <h2>{{ selectedPet.nom }}</h2>
+      <span class="pet-species">
+        {{ selectedPet.espece_libelle }} • {{ selectedPet.race }}
+      </span>
+    </div>
+  </div>
+  <!-- CARD GRID -->
+  <div class="card-grid">
+    <!-- Santé -->
+    <div class="info-card">
+      <h3>Santé</h3>
+      <ul>
+        <li>
+          Vacciné :
+          <span *ngIf="selectedPet.est_vaccine > 0"> Oui</span>
+          <span *ngIf="selectedPet.est_vaccine == 0"> Non</span>
+        </li>
+        <li>
+          Dernier contrôle :
+          {{ selectedPet.dernier_dossier }}
+        </li>
+        <li>
+          Stérilisé:
+          <span *ngIf="selectedPet.sterilisation > 0">Oui</span>
+          <span *ngIf="selectedPet.sterilisation == 0"> Non</span>
+        </li>
+      </ul>
+      <button class="card-button" [routerLink]="['/add-dossier']">
+        Ajouter un dossier médical
+      </button>
+    </div>
+
+    <!-- Infos Générales -->
+    <div class="info-card">
+      <h3>Infos Générales</h3>
+      <ul>
+        <li>Né le : {{ selectedPet.date_nais }}</li>
+        <li>Couleur : {{ selectedPet.couleur }}</li>
+        <li>Poids : {{ selectedPet.poids || "N/A" }} kg</li>
+        <li>{{ selectedPet.sexe === "M" ? "Mâle" : "Femelle" }}</li>
+      </ul>
+    </div>
+
+    <!-- Rendez-vous -->
+    <div class="info-card">
+      <h3>Rendez-vous</h3>
+      <ul *ngIf="selectedPet.rendez_vous && selectedPet.rendez_vous.length > 0">
+        <div class="appointment" *ngFor="let rdv of selectedPet.rendez_vous">
+          <li class="appointment-date">
+            {{ rdv.date }}
+          </li>
+
+          <li class="appointment-location">
+            {{ rdv.lieux }}
+          </li>
+          <li class="appointment-vet">{{ rdv.veterinaire }}</li>
+        </div>
+      </ul>
+      <p *ngIf="selectedPet.rendez_vous.length === 0" class="no-data">
+        Aucun rendez-vous prévu
+      </p>
+      <button class="card-button" [routerLink]="['/add-rdv']">
+        Ajouter un rendez-vous
+      </button>
+    </div>
+  </div>
+  <!-- End of card-grid -->
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="action-button" [routerLink]="['/add-animal']">
+      Ajouter un Animal
+    </button>
+    <button class="action-button" [routerLink]="['/lost-pet']">
+      Lost my pet
+    </button>
+  </div>
+  <div class="dossier-section" *ngIf="selectedPet">
+    <h2 class="section-title">Dossiers Médicaux</h2>
+    <div
+      class="card-grid"
+      *ngIf="selectedPet.dossiers && selectedPet.dossiers.length > 0"
+    >
+      <div
+        class="info-card dossier-card"
+        *ngFor="let dossier of selectedPet.dossiers"
+      >
+        <h3>Dossier du {{ dossier.date }}</h3>
+        <ul>
+          <li>
+            <strong>Description :</strong> {{ dossier.description || "N/A" }}
+          </li>
+          <li>
+            <strong>Diagnostic :</strong> {{ dossier.diagnostique || "N/A" }}
+          </li>
+          <li>
+            <strong>Traitement :</strong> {{ dossier.traitements || "N/A" }}
+          </li>
+          <li>
+            <strong>Médicaments :</strong> {{ dossier.medicaments || "N/A" }}
+          </li>
+          <li>
+            <strong>Vaccin :</strong>
+            <span *ngIf="dossier.vaccin > 0">Oui</span>
+            <span *ngIf="dossier.vaccin == 0">Non</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p
+      *ngIf="!selectedPet.dossiers || selectedPet.dossiers.length === 0"
+      class="no-data"
+    >
+      Aucun dossier médical disponible
+    </p>
+  </div>
+</div>

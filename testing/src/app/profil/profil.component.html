@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+
+<div class="page-content" *ngIf="user">
+  <h1 class="title">Mon Profil</h1>
+
+  <div class="card-grid">
+    <div class="info-card">
+      <h3>Informations Personnelles</h3>
+      <ul>
+        <li><strong>Nom :</strong> {{ user.nom }}</li>
+        <li><strong>Prénom :</strong> {{ user.prenom }}</li>
+        <li><strong>Email :</strong> {{ user.email || "N/A" }}</li>
+        <li><strong>Téléphone :</strong> {{ user.num_tel || "N/A" }}</li>
+      </ul>
+      <button class="card-button" [routerLink]="['/update-proprio']">
+        Modifier mes informations
+      </button>
+    </div>
+
+    <!-- Mes Animaux -->
+    <div class="info-card">
+      <h3>Mes Animaux</h3>
+      <ul *ngIf="user.animals && user.animals.length > 0">
+        <li *ngFor="let animal of user.animals">
+          {{ animal.nom }} ({{ animal.espece_libelle }})
+        </li>
+      </ul>
+      <p *ngIf="!user.animals || user.animals.length === 0" class="no-data">
+        Aucun animal enregistré
+      </p>
+      <button class="card-button" [routerLink]="['/add-animal']">
+        Ajouter un animal
+      </button>
+    </div>
+  </div>
+  <!-- End of card-grid -->
+</div>
+
+<div class="empty-state" *ngIf="!user">
+  <div class="empty-icon">🐾</div>
+  <h2>Aucune information disponible</h2>
+  <p>Veuillez vous connecter ou contacter l'administrateur.</p>
+</div>

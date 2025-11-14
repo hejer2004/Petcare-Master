@@ -1,0 +1,75 @@
+<div class="container">
+  <h2>Ajout d'un Animal</h2>
+
+  <form (ngSubmit)="onSubmit()" #animalForm="ngForm">
+    <div class="form-group">
+      <label for="nom">Nom*</label>
+      <input type="text" id="nom" name="nom" [(ngModel)]="animal.nom" required />
+    </div>
+
+    <div class="form-group">
+      <label for="espece">Espèce*</label>
+      <select id="espece" name="espece" [(ngModel)]="animal.espece" required>
+        <option value="" disabled selected>
+          -- Sélectionner une espèce --
+        </option>
+        <option *ngFor="let e of especes" [value]="e.code_espece">
+          {{ e.libelle }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="date_nais">Date de naissance*</label>
+      <input type="date" id="date_nais" name="date_nais" [(ngModel)]="animal.date_nais" required />
+    </div>
+
+    <div class="form-group">
+      <label for="sexe">Sexe*</label>
+      <select id="sexe" name="sexe" [(ngModel)]="animal.sexe" required>
+        <option value="M">Masculin</option>
+        <option value="F">Féminin</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="race">Race</label>
+      <input type="text" id="race" name="race" [(ngModel)]="animal.race" />
+    </div>
+
+    <div class="form-group">
+      <label for="couleur">Couleur</label>
+      <input type="text" id="couleur" name="couleur" [(ngModel)]="animal.couleur" />
+    </div>
+    <div class="form-group">
+      <label for="couleur">Poids</label>
+      <input type="number" id="couleur" name="couleur" [(ngModel)]="animal.poids" />
+    </div>
+
+    <div class="form-group">
+      <label for="signe_particulier">Signes particuliers</label>
+      <textarea
+        id="signe_particulier"
+        name="signe_particulier"
+        [(ngModel)]="animal.signe_particulier"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <input
+        type="checkbox"
+        id="sterilisation"
+        name="sterilisation"
+        [(ngModel)]="animal.sterilisation"
+      />
+      <label for="sterilisation">Stérilisé</label>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" [disabled]="animalForm.invalid">
+        Ajouter l'animal
+      </button>
+    </div>
+  </form>
+</div>
